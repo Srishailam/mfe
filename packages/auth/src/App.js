@@ -15,6 +15,7 @@ const generateClassName = createGenerateClassName({
 });
 
 export default ({ history }) => {
+    console.log('auth app');
     return (
         <div>
             <StylesProvider generateClassName={generateClassName}>
