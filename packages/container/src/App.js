@@ -15,14 +15,18 @@ const generateClassName = createGenerateClassName({
 });
 
 export default () => {
+
+    const [isSignedIn, setIsSignedIn] = React.useState(false);
     return (
         <BrowserRouter>
             <StylesProvider generateClassName={generateClassName}>
             <div>
-                <Header />
+                <Header isSignedIn={isSignedIn} onSignOut={() => setIsSignedIn(false)} />
                 <Suspense fallback={<Progress />}>
                     <Switch>
-                        <Route path="/auth" component={AuthAppLazy} />
+                        <Route path="/auth">
+                            <AuthAppLazy onSignIn={() => setIsSignedIn(true)} />
+                        </Route>
                         <Route path="/" component={MarketingAppLazy} />
                     </Switch>
                 </Suspense>
